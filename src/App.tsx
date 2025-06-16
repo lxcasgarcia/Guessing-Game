@@ -48,6 +48,7 @@ export default function App() {
     const exist = lettersUsed.find((used) => used.value.toUpperCase() === value)
 
     if (exist) {
+      setLetter("")
       return alert("Você já utilizou a letra " + value)
     }
 
@@ -62,9 +63,32 @@ export default function App() {
     setLetter("")
   }
 
+  function endGame(message: string) {
+    alert(message)
+    startGame()
+  }
+
   useEffect(() => {
     startGame()
   }, [])
+
+  useEffect(() => {
+    if (!challenge) {
+      return
+    }
+
+    setTimeout(() => {
+      if (score === challenge.word.length) {
+        return endGame("Parabéns, você acertou a palavra!")
+      }
+
+      const attemptLimit = challenge.word.length + ATTEMPTS_MARGIN
+
+      if (lettersUsed.length === attemptLimit) {
+        return endGame("Você usou todas as tentativas!")
+      }
+    }, 200)
+  }, [score, lettersUsed.length])
 
   if (!challenge) {
     return
@@ -81,7 +105,7 @@ export default function App() {
           {challenge.word.split("").map((letter, index) => {
             const letterUsed = lettersUsed.find((used) => used.value.toUpperCase() === letter.toUpperCase())
 
-            return <Letter key={index} value={letterUsed?.value} color={letterUsed?.correct ? "correct" : "default"}/>
+            return <Letter key={index} value={letterUsed?.value} color={letterUsed?.correct ? "correct" : "default"} />
           })}
         </div>
 

@@ -11,6 +11,7 @@ O principal objetivo deste projeto é criar uma *aplicação web interativa de a
 - 🔄 Botão para reiniciar o jogo a qualquer momento
 - 🎨 Feedback visual para acertos e erros
 - 🧠 Lógica de verificação de acertos por letra ou palavra inteira
+- 🚀 Deploy integrado com Vercel
 
 Foi uma experiência extremamente enriquecedora, onde colocamos em prática diversos conceitos importantes do desenvolvimento Full Stack.
 
